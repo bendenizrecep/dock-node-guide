@@ -5,14 +5,35 @@
 sudo snap install docker
 screen -S main
 ```
-### gerekli yüklemeler
+### node yüklemesi
+
+```
+git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
+
+cd substrate-node-template
+
+cargo b -r
+
+```
+#### help komutu ile birr çok şeyi görebiliriz 
+```
+./target/release/node-template --help
+
+```
+#### burayı tam anlamadım //alice yazar da denenebilir
+```
+./target/release/node-template key inspect //nodeismi gelmesi gerekebilir burda bir soru işareti var
+```
+#### bu kod ile node başlıyor
+
+```
+./target/release/node-template --dev
 
 ```
 
-```
 
 
-### ardından bu kodlar
+### validator nod için gerekli ıvır zıvır (düzenlencek)
 ```
 
 docker run -p 9944:9944 -p 30333:30333 docknetwork/dock-substrate:latest --chain ./cspec/knox_raw.json --ws-external
