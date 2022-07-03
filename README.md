@@ -20,7 +20,7 @@ cargo b -r
 ./target/release/node-template --help
 
 ```
-#### burayı tam anlamadım //alice yazar da denenebilir
+#### burayı tam anlamadım //alice yazarak da denenebilir
 ```
 ./target/release/node-template key inspect //nodeismi gelmesi gerekebilir burda bir soru işareti var
 ```
