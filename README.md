@@ -3,6 +3,7 @@
 ### first we install docker and then we install screen
 ```
 sudo snap install docker
+
 screen -S main
 ```
 
@@ -31,7 +32,9 @@ We will only do what is explained in the _Using Browser UI_ section from the pag
 ### We continue to enter the codes in order
 ```
 insert_session_key_with_seed.js
+
 knox_raw.json
+
 -chain=/cspec/knox_raw.json
 
 ```
@@ -46,7 +49,9 @@ sudo docker logs dock-node -f --tail 100
 
 ```
 cargo build --release --features mainnet
+
 ./target/release/dock-node --chain-spec=./cspec/knox_raw.json --validator 
+
 docker run -d -p 9944:9944 -p 9933:9933 -p 30333:30333 docknetwork/dock-substrate:mainnet --chain=./cspec/knox_raw.json --validator
 
 ```
