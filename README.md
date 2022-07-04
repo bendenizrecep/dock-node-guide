@@ -1,40 +1,14 @@
 ## dock-node-guide
 
-### ilk önce docker yüklüyoruz ve ardından screen kurulumu yapıyoruz
+### first we install docker and then we install screen
 ```
 sudo snap install docker
 screen -S main
 ```
-### node yüklemesi
 
+### Enter the codes in order
 ```
-git clone --branch latest --depth 1 https://github.com/substrate-developer-hub/substrate-node-template
-
-cd substrate-node-template
-
-cargo b -r
-
-```
-#### help komutu ile birr çok şeyi görebiliriz 
-```
-./target/release/node-template --help
-
-```
-#### burayı tam anlamadım //alice yazarak da denenebilir
-```
-./target/release/node-template key inspect //nodeismi gelmesi gerekebilir burda bir soru işareti var
-```
-#### bu kod ile node başlıyor
-
-```
-./target/release/node-template --dev
-
-```
-
-
-
-### validator nod için gerekli ıvır zıvır (düzenlencek)
-```
+sudo -s
 
 docker run -p 9944:9944 -p 30333:30333 docknetwork/dock-substrate:latest --chain ./cspec/knox_raw.json --ws-external
 
@@ -47,18 +21,32 @@ rustup target add wasm32-unknown-unknown --toolchain nightly
 cargo build --release
 
 cargo build --release --features mainnet
+```
+###After these codes, there is the key creation part, we will do it using UI instead of using scripts.
 
-cargo build --release --features small_durations
+https://docs.dock.io/validators/tooling/key-generation
 
-cargo build --release --features fastblock
+We will only do what is explained in the _Using Browser UI_ section from the page in the link above.
 
-docker build --build-arg features='--features mainnet' .
-
-./target/release/dock-node build-spec --chain=testnet > knox_test.json
-./target/release/dock-node build-spec --chain=knox_test.json --raw > knox_test_raw.json
-
-
+### We continue to enter the codes in order
+```
+insert_session_key_with_seed.js
+knox_raw.json
+-chain=/cspec/knox_raw.json
 
 ```
 
+#### Code Required to View Logs (We need to monitor the logs and confirm it's working.)
 
+```
+sudo docker logs dock-node -f --tail 100
+```
+
+### Becoming Validator _continue in order_
+
+```
+cargo build --release --features mainnet
+./target/release/dock-node --chain-spec=./cspec/knox_raw.json --validator 
+docker run -d -p 9944:9944 -p 9933:9933 -p 30333:30333 docknetwork/dock-substrate:mainnet --chain=./cspec/knox_raw.json --validator
+
+```
