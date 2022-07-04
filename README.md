@@ -22,7 +22,7 @@ cargo build --release
 
 cargo build --release --features mainnet
 ```
-###After these codes, there is the key creation part, we will do it using UI instead of using scripts.
+### After these codes, there is the key creation part, we will do it using UI instead of using scripts.
 
 https://docs.dock.io/validators/tooling/key-generation
 
